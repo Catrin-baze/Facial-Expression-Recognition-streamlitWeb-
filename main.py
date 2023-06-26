@@ -1,22 +1,33 @@
 import streamlit as st
 import numpy as np
+from PIL import Image
 import altair as alt
 import pandas as pd
+import cv2
 
+st.title("Facial Expression Recognition App")
+st.write("")
+st.write("")
+option = st.selectbox(
+     'Choose the model you want to use?',
+     ('resnet50', 'resnet101', 'densenet121','shufflenet_v2_x0_5','mobilenet_v2'))
+""
+option2 = st.selectbox(
+     'you can select some image',
+     ('image_dog', 'image_snake'))
 
-st.header('st.write')
+file_up = st.file_uploader("Upload an image", type="jpg")
+if file_up is None:
+    if option2 =="image_dog":
+        image=Image.open("image/dog.jpg")
+        file_up="image/dog.jpg"
+    else:
+        image=Image.open("image/snake.jpg")
+        file_up="image/snake.jpg"
 
-st.write('Hello,*World!*:sunglasses:')
-st.write(1234)
-df = pd.DataFrame({
-     'first column': [1, 2, 3, 4],
-     'second column': [10, 20, 30, 40]
-     })
-st.write(df)
-st.write('Below is a DataFrame:', df, 'Above is a dataframe.')
-df2 = pd.DataFrame(
-     np.random.randn(200, 3),
-     columns=['a', 'b', 'c'])
-c = alt.Chart(df2).mark_circle().encode(
-     x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
-st.write(c)
+from streamlit_webrtc import webrtc_streamer
+
+st.title("My first Streamlit app")
+st.write("Hello, world")
+
+webrtc_streamer(key="example")
