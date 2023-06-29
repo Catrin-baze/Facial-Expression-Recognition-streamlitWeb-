@@ -30,8 +30,6 @@ st.image(image, caption='Uploaded Image.', use_column_width=True)
 st.write("")
 st.write("Just a second...")
 img = mmcv.imread(file_up)
-!mkdir /mmcls/weights
-!wget -P /mmcls/weights/ "https://github.com/youqingxiaozhua/APViT/releases/download/V1.0.0/APViT_RAF-3eeecf7d.pth"
 model = init_model(
     config="/mmcls/configs/apvit/RAF.py",
     checkpoint="/mmcls/weights/APViT_RAF-3eeecf7d.pth"
