@@ -3,7 +3,6 @@ import numpy as np
 from PIL import Image
 import altair as alt
 import pandas as pd
-import cv2
 import mmcv
 import matplotlib.pyplot as plt
 from mmcls.apis.inference import init_model, inference_model
