@@ -7,8 +7,8 @@ import torch
 from mmcv.parallel import collate, scatter
 from mmcv.runner import load_checkpoint
 
-from mmcls.datasets.pipelines import Compose
-from mmcls.models import build_classifier
+from apvit.datasets.pipelines import Compose
+from apvit.models import build_classifier
 
 
 def init_model(config, checkpoint=None, device='cuda:0', options=None):
