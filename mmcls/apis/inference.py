@@ -11,6 +11,7 @@ from apvit.datasets.pipelines import Compose
 from apvit.models import build_classifier
 
 
+
 def init_model(config, checkpoint=None, device='cuda:0', options=None):
     """Initialize a classifier from config file.
 
