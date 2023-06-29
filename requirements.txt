@@ -1,6 +1,6 @@
 streamlit
 streamlit-webrtc
-mmcv==0.4.3
+mmcv==1.7.1
 matplotlib
 numpy
 opencv-python-headless>=4.1.2
