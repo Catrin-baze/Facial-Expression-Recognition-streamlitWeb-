@@ -5,7 +5,7 @@ from torch.nn import Linear, Conv2d, BatchNorm1d, BatchNorm2d, PReLU, ReLU, Sigm
 from collections import namedtuple
 import torch
 from mmcv.runner import load_state_dict
-from mmcls.utils import get_root_logger
+#from mmcls.utils import get_root_logger
 
 from ..builder import BACKBONES
 from .base_backbone import BaseBackbone
