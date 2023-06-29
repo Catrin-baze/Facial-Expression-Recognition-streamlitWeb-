@@ -1,6 +1,6 @@
 streamlit
 streamlit-webrtc
-mmcv==1.7.1
+mmcv==1.4.1
 python>=3.10
 matplotlib
 numpy
