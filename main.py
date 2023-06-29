@@ -31,8 +31,8 @@ st.write("")
 st.write("Just a second...")
 img = mmcv.imread(file_up)
 model = init_model(
-    config="/mmcls/configs/apvit/RAF.py",
-    checkpoint="/mmcls/APViT_RAF-3eeecf7d.pth"
+    config="mmcls/configs/apvit/RAF.py",
+    checkpoint="mmcls/APViT_RAF-3eeecf7d.pth"
 )
 result = inference_model(model, img)
 st.success('successful prediction')
