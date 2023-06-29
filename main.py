@@ -4,6 +4,9 @@ from PIL import Image
 import altair as alt
 import pandas as pd
 import cv2
+import mmcv
+import matplotlib.pyplot as plt
+from mmcls.apis.inference import init_model, inference_model
 
 st.title("Facial Expression Recognition App")
 st.write("")
@@ -24,3 +27,14 @@ if file_up is None:
     else:
         image=Image.open("image/snake.jpg")
         file_up="image/snake.jpg"
+st.image(image, caption='Uploaded Image.', use_column_width=True)
+st.write("")
+st.write("Just a second...")
+img = mmcv.imread(file_up)
+model = init_model(
+    config="configs/apvit/RAF.py",
+    checkpoint="weights/APViT_RAF-3eeecf7d.pth"
+)
+result = inference_model(model, img)
+st.success('successful prediction')
+st.write(result)
