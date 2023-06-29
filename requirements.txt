@@ -1,8 +1,8 @@
 streamlit
 streamlit-webrtc
 mmcv
-matplotlib>=3.2.2
-numpy>=1.18.5
+matplotlib
+numpy
 opencv-python-headless>=4.1.2
-torch==1.7.1
-torchvision>=0.8.1
+torch
+torchvision
