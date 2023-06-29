@@ -2,4 +2,3 @@ streamlit
 streamlit-webrtc
 opencv-python-headless
 mmcv
-libgl1-mesa-glx
