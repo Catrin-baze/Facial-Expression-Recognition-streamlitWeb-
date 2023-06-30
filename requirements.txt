@@ -1,5 +1,4 @@
 # base ----------------------------------------
-fer
 streamlit
 streamlit-webrtc
 mmcv==1.7.1
