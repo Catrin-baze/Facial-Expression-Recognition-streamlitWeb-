@@ -127,7 +127,7 @@ if __name__ == '__main__':
                         st.success('successful prediction')
                         st.write(result)
                     st.balloons()
-             if source_index == 2:
+            if source_index == 2:
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
                         st.image(str(Path(f'{get_detection_folder()}') / img))
