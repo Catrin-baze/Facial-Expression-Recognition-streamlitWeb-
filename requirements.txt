@@ -1,4 +1,6 @@
 # base ----------------------------------------
+[browser]
+gatherUsageStats = false
 streamlit
 streamlit-webrtc
 mmcv==1.7.1
