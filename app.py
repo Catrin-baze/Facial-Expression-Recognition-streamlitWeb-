@@ -88,7 +88,7 @@ if __name__ == '__main__':
                 opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
-    if source_index == 2:
+    else if source_index == 2:
         uploaded_file = st.sidebar.file_uploader(
             "上传图片", type=['png', 'jpeg', 'jpg'])
         if uploaded_file is not None:
@@ -116,7 +116,6 @@ if __name__ == '__main__':
         print('valid')
         if st.button('开始检测'):
 
-            detect(opt)
 
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
@@ -127,13 +126,15 @@ if __name__ == '__main__':
                         st.success('successful prediction')
                         st.write(result)
                     st.balloons()
-            if source_index == 2:
+            else if source_index == 2:
+                detect(opt)
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
                         st.image(str(Path(f'{get_detection_folder()}') / img))
 
                     st.balloons()
             else:
+                detect(opt)
                 with st.spinner(text='Preparing Video'):
                     for vid in os.listdir(get_detection_folder()):
                         st.video(str(Path(f'{get_detection_folder()}') / vid))
