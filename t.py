@@ -3,6 +3,7 @@ from pathlib import Path
 import streamlit as st
 import time
 from yolo5.detect import detect
+from fer import FER
 import os
 import sys
 import argparse
