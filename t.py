@@ -9,6 +9,34 @@ import sys
 import argparse
 from PIL import Image
 
+def draw_result(frame=None, result=None):
+    if result:
+        result_max = max(result[0]["emotions"].items(), key=lambda x: x[1])
+        emotion_type, emotion_value = result_max
+        text = emotion_type + ":" + str(emotion_value)
+
+        x, y, w, h = result[0]["box"]
+        point_top = np.array([x, y])
+        point_bot = np.array([x + w, y + h])
+
+        point_color = (0, 255, 0)
+        thickness = 2
+        lineType = 4
+
+        cv2.rectangle(frame, tuple(point_top), tuple(point_bot), point_color, thickness, lineType)
+        t_size = cv2.getTextSize(text, 1, cv2.FONT_HERSHEY_PLAIN, 1)[0]  # 获取文字框大小
+        text_bot = point_top + np.array(list(t_size))
+        cv2.rectangle(frame, tuple(point_top), tuple(text_bot), point_color, -1)
+
+        # 计算文字偏移
+        point_top[1] = point_top[1] + (t_size[1] / 2 + 4)
+
+        cv2.putText(frame, text, tuple(point_top), cv2.FONT_HERSHEY_PLAIN, 1.0, (255, 0, 255), 1)
+
+    else:
+        print("detect None")
+
+    return frame
 
 def get_subdirs(b='.'):
     '''
