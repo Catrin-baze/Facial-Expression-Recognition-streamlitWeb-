@@ -7,6 +7,9 @@ import os
 import sys
 import argparse
 from PIL import Image
+import mmcv
+import matplotlib.pyplot as plt
+from mmcls.apis.inference import init_model, inference_model
 
 
 def get_subdirs(b='.'):
@@ -70,10 +73,9 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt)
 
-    source = ("图片检测", "视频检测")
+    source = ("人脸表情图像识别", "yolo5视频检测","yolo5图像检测")
     source_index = st.sidebar.selectbox("选择输入", range(
         len(source)), format_func=lambda x: source[x])
-
     if source_index == 0:
         uploaded_file = st.sidebar.file_uploader(
             "上传图片", type=['png', 'jpeg', 'jpg'])
@@ -86,7 +88,19 @@ if __name__ == '__main__':
                 opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
-    else:
+    if source_index == 2:
+        uploaded_file = st.sidebar.file_uploader(
+            "上传图片", type=['png', 'jpeg', 'jpg'])
+        if uploaded_file is not None:
+            is_valid = True
+            with st.spinner(text='资源加载中...'):
+                st.sidebar.image(uploaded_file)
+                picture = Image.open(uploaded_file)
+                picture = picture.save(f'data/images/{uploaded_file.name}')
+                opt.source = f'data/images/{uploaded_file.name}'
+        else:
+            is_valid = False
+    if source_index == 1:
         uploaded_file = st.sidebar.file_uploader("上传视频", type=['mp4'])
         if uploaded_file is not None:
             is_valid = True
@@ -105,6 +119,15 @@ if __name__ == '__main__':
             detect(opt)
 
             if source_index == 0:
+                with st.spinner(text='Preparing Images'):
+                    for img in os.listdir(get_detection_folder()):
+                        img = mmcv.imread(img)
+                        model = init_model( config="mmcls/configs/apvit/RAF.py", checkpoint="mmcls/APViT_RAF-3eeecf7d.pth")
+                        result = inference_model(model, img)
+                        st.success('successful prediction')
+                        st.write(result)
+                    st.balloons()
+             if source_index == 2:
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
                         st.image(str(Path(f'{get_detection_folder()}') / img))
