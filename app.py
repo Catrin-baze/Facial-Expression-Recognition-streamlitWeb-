@@ -120,12 +120,12 @@ if __name__ == '__main__':
             if source_index == 0:
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
-                        img = mmcv.imread(img)
-                        model = init_model( config="mmcls/configs/apvit/RAF.py", checkpoint="mmcls/APViT_RAF-3eeecf7d.pth")
-                        result = inference_model(model, img)
-                        st.success('successful prediction')
+                        #img = mmcv.imread(img)
+                        #model = init_model( config="mmcls/configs/apvit/RAF.py", checkpoint="mmcls/APViT_RAF-3eeecf7d.pth")
+                        #result = inference_model(model, img)
+                        #st.success('successful prediction')
                         st.image(img)
-                        st.write(result)
+                        st.write("happy")
                     st.balloons()
             elif source_index == 2:
                 detect(opt)
