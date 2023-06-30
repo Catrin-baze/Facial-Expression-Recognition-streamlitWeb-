@@ -88,7 +88,7 @@ if __name__ == '__main__':
                 opt.source = f'data/images/{uploaded_file.name}'
         else:
             is_valid = False
-    else if source_index == 2:
+    elif source_index == 2:
         uploaded_file = st.sidebar.file_uploader(
             "上传图片", type=['png', 'jpeg', 'jpg'])
         if uploaded_file is not None:
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                         st.success('successful prediction')
                         st.write(result)
                     st.balloons()
-            else if source_index == 2:
+            elif source_index == 2:
                 detect(opt)
                 with st.spinner(text='Preparing Images'):
                     for img in os.listdir(get_detection_folder()):
